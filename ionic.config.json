@@ -1,0 +1,7 @@
+{
+  "name": "coopeApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
