@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="atras()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Agregar Persona</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-row>
+    <ion-col size="6"></ion-col>
+    
+    <ion-col size="6" >
+      <ion-button mode="ios" color="tertiary" (click)="onClick()" style="float: right;"   >
+        Importar Contacto
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+
+
+  <ion-card color="blanco" >
+    <ion-card-content>
+
+      <form (ngSubmit)="agregarPersona( forma )" #forma="ngForm">
+        <ion-item color="blanco">
+          <ion-label position="floating">Nombre Completo <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required name="nombre" type="text" [(ngModel)]="nombre"></ion-input>
+        </ion-item>
+        <ion-item color="blanco">
+          <ion-label position="floating">Ahorro ($ Cantidad mensual) <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required name="cantidad" type="number" [(ngModel)]="cantidad"></ion-input>
+        </ion-item>
+        <ion-item color="blanco">
+          <ion-label position="floating">Numero de Telefono </ion-label>
+          <ion-input  name="telefono" type="number" [(ngModel)]="telefono"></ion-input>
+        </ion-item>
+
+        <ion-button  color="secondary" type="submit" [disabled]="forma.invalid">
+          Agregar
+        </ion-button>
+      </form>
+
+      
+      
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
