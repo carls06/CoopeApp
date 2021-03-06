@@ -17,26 +17,26 @@ export class TabsPage {
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Agregar',
       mode:'ios',
       cssClass: 'my-custom-class',
       buttons: [{
-        text: 'Agregar Persona',
+        text: 'Agregar persona',
         icon: 'person-add-outline',
         handler: () => {
           this.add();
         }
       }, {
-        text: 'Agregar Prestamos',
-        icon: 'person-add-outline',
+        text: 'Agregar prestamos',
+        icon: 'cash-outline',
         handler: () => {
           
           this.addPrestamos();
         }
       },{
-        text: 'Cancel',
+        text: 'Cancelar',
         icon: 'close',
         role: 'cancel',
+        cssClass:'botoncancel',
         
         handler: () => {
           console.log('Cancel clicked');
