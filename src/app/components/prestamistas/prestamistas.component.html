@@ -1,32 +1,43 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar color="blanco">
     <ion-buttons slot="start">
       <ion-button (click)="atras()">
         <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Agregar Persona</ion-title>
+    <ion-title>Agregar Prestamo</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card color="blanco" >
+
+  <ion-row>
+    <ion-col size="6"></ion-col>
+    
+    <ion-col size="6" >
+      <ion-button mode="ios" color="tertiary" (click)="onClick()" style="float: right;"   >
+        Importar Contacto
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-card  color="blanco" >
     <ion-card-content color="blanco">
 
       <form (ngSubmit)="agregarPrestamo( forma )" #forma="ngForm">
         <ion-item color="blanco">
-          <ion-label position="floating">Nombre Completo <ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Nombre Completo: <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required name="nombre" type="text" [(ngModel)]="nombre"></ion-input>
         </ion-item>
         <ion-item color="blanco">
-          <ion-label position="floating">Prestamo ($ Cantidad a Prestar) <ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Prestamo ($ Cantidad a Prestar): <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required name="cantidad" type="number" [(ngModel)]="cantidad"></ion-input>
         </ion-item>
         <ion-item color="blanco">
-          <ion-label position="floating">Intereses (Porcentaje Mensual) <ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Intereses (Porcentaje Mensual): <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required name="interes" type="number" [(ngModel)]="interes"  ></ion-input>
         </ion-item>
         <ion-item color="blanco">
-          <ion-label position="floating">Numero de Telefono </ion-label>
+          <ion-label position="floating">Numero de Telefono: </ion-label>
           <ion-input  name="telefono" type="number" [(ngModel)]="telefono"></ion-input>
         </ion-item>
 

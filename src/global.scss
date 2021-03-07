@@ -37,3 +37,33 @@ ion-content{
     
     --ion-background-color: #E1E2E1;
 }
+
+.botoncancel
+{   
+    color: 	#ff5252!important;
+    --background: var(-ion-color-blanco)!important;
+
+   
+}
+
+.botoncancel:hover
+{
+    --background: var(-ion-color-blanco)!important;
+}
+
+.prestamos
+{
+    color: #5ab507  !important ;
+}
+
+.personas
+{
+    color: #5ab2da !important;
+}
+
+.billetera
+{
+    color: #eed09d !important;
+}
+
+

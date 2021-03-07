@@ -28,15 +28,15 @@
 
       <form (ngSubmit)="agregarPersona( forma )" #forma="ngForm">
         <ion-item color="blanco">
-          <ion-label position="floating">Nombre Completo <ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Nombre Completo: <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required name="nombre" type="text" [(ngModel)]="nombre"></ion-input>
         </ion-item>
         <ion-item color="blanco">
-          <ion-label position="floating">Ahorro ($ Cantidad mensual) <ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Ahorro ($ Cantidad mensual): <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required name="cantidad" type="number" [(ngModel)]="cantidad"></ion-input>
         </ion-item>
         <ion-item color="blanco">
-          <ion-label position="floating">Numero de Telefono </ion-label>
+          <ion-label position="floating">Numero de Telefono: </ion-label>
           <ion-input  name="telefono" type="number" [(ngModel)]="telefono"></ion-input>
         </ion-item>
 
