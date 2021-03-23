@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "coopes-bce26.appspot.com",
     messagingSenderId: "909965939694",
     appId: "1:909965939694:web:8e61a23db1753ca63a74ff"
-  }
+  },
+  url:'https://loanservice-api.herokuapp.com'
 };
 
 /*

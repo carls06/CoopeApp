@@ -15,14 +15,14 @@
   <form (ngSubmit)="login( forma )" #forma="ngForm" id="form">
     <ion-item >
       <ion-icon slot="start" name="person-outline"></ion-icon>
-      <ion-label position="floating">Ingrese Correo o Usuario <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required name="useremail" type="text" [(ngModel)]="useremail"></ion-input>
+      <ion-label position="floating">Correo  <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required name="email" type="text" [(ngModel)]="auth.email"></ion-input>
     </ion-item>
     
     <ion-item >
       <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
-      <ion-label position="floating">Ingrese Contraseña </ion-label>
-      <ion-input required name="pass" type="password" [(ngModel)]="pass"></ion-input>
+      <ion-label position="floating"> Contraseña </ion-label>
+      <ion-input required name="password" type="password" [(ngModel)]="auth.password"></ion-input>
     </ion-item>
 
     <ion-button  color="secondary" type="submit" [disabled]="forma.invalid">

@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DetailUserComponent } from './components/detail-user/detail-user.component';
 import { PrestamistasComponent } from './components/prestamistas/prestamistas.component';
 import { DetailPrestamistaComponent } from './components/detail-prestamista/detail-prestamista.component';
+import {  HttpClientModule } from '@angular/common/http';
 
 
 
@@ -32,11 +33,13 @@ import { DetailPrestamistaComponent } from './components/detail-prestamista/deta
     AngularFirestoreModule,
     FormsModule,
     AngularFireAuthModule,
-    IonicStorageModule
+    IonicStorageModule,
+    HttpClientModule
     
   ],
   providers: [
     StatusBar,
+    HttpClientModule,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

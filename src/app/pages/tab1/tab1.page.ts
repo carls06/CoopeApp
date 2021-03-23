@@ -6,6 +6,7 @@ import { BdService } from '../../services/bd.service';
 import { DetailUserComponent } from '../../components/detail-user/detail-user.component';
 import { BdPrestamoService } from '../../services/bdPrestamo.service';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -23,7 +24,9 @@ export class Tab1Page implements OnInit {
   public prestado:number=0;
   
 
-  constructor(public modalController: ModalController, private bdServ_:BdService,private bdPrestServ_:BdPrestamoService) {
+  constructor(public modalController: ModalController,
+    private bdServ_:BdService,private bdPrestServ_:BdPrestamoService,
+    private authSer_:AuthService) {
    
   }
 
@@ -38,6 +41,10 @@ export class Tab1Page implements OnInit {
       this.users = users;
     })
 
+  }
+  logout(){
+    
+    this.authSer_.logout();
   }
   getPrestamos(){
     this.bdPrestServ_.getPrestamistas().subscribe((prestamistas:any)=>{
