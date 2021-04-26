@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BdService } from 'src/app/services/bd.service';
 import { BdPrestamoService } from '../../services/bdPrestamo.service';
-import { PrestamistasComponent } from '../../components/prestamistas/prestamistas.component';
+import{DetailPrestamistaComponent} from '../../components/detail-prestamista/detail-prestamista.component'
+
 
 @Component({
   selector: 'app-tab3',
@@ -23,14 +24,22 @@ export class Tab3Page {
 
   
 
+  async presentModalProf() {
+    const modal = await this.modalController.create({
+      component: DetailPrestamistaComponent
+    });
+    return await modal.present();
+  }
+
   delete(id:string){
     this.bdPrestServ_.removePrestamo(id);
   }
 
   profilePrestamista(id:string){
     console.log(id);
-    
-
+    this.presentModalProf();
+    localStorage.setItem('userp',id);
+   
   }
 
 }

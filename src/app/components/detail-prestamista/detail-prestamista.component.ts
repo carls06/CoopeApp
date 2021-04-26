@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { BdPrestamoService } from 'src/app/services/bdPrestamo.service';
+import { BdService } from '../../services/bd.service';
 
 @Component({
   selector: 'app-detail-prestamista',
@@ -7,7 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPrestamistaComponent implements OnInit {
 
-  constructor() { }
+
+  idUser: string;
+   public data:any;
+   public ahorro:number=0;
+
+   constructor(private modalCtrl:ModalController, private bdServ_:BdPrestamoService) { 
+    this.mostrarInfo();
+   }
+
+   mostrarInfo(){
+    this.idUser=localStorage.getItem('userp');
+   this.bdServ_.getPrestamo(this.idUser).subscribe(
+     (datosU:any)=>{
+       
+      this.data=datosU;
+  
+     }
+   );
+
+  }
 
   ngOnInit() {}
 

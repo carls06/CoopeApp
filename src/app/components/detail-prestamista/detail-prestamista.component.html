@@ -1,3 +1,93 @@
-<p>
-  detail-prestamista works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="blanco">
+    <ion-buttons slot="start">
+      <ion-button (click)="atras()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{data.nombre}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card mode="md" color="blanco" >
+    <ion-card-header>
+      
+      <ion-card-title>Informacion</ion-card-title>
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item color="blanco">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+        <ion-label>{{data.nombre}}</ion-label>
+      </ion-item>
+      <ion-item color="blanco">
+        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <ion-label>Telefono: {{data.telefono}}</ion-label>
+      </ion-item>
+      
+      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-card mode="ios" color="primary" class="center">
+        <ion-card-content>
+          <ion-card-subtitle><ion-text  color="fontcolor">Prestamo</ion-text></ion-card-subtitle>
+          <ion-card-title> <ion-text color="fontcolor">$ 6565</ion-text></ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <!--<ion-row>
+    <ion-col size="12">
+      <ion-card color="primary" class="center">
+        <ion-card-title>
+          <ion-icon name="wallet-outline"></ion-icon>
+        </ion-card-title>
+        <ion-card-content>
+          <ion-card-subtitle> Ahorro</ion-card-subtitle>
+          <ion-card-title></ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>-->
+
+  <ion-card  color="blanco">
+    <ion-card-header>
+      <ion-card-title>Agregar Mensualidad</ion-card-title>
+    </ion-card-header>
+    
+<ion-card-content color="blanco" >
+
+  <form (ngSubmit)="agregarMes( forma )" #forma="ngForm">
+    <ion-item color="blanco">
+      <ion-label position="floating"><em>Mes</em> <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required name="name" type="text" [(ngModel)]="mesArray.name"></ion-input>
+    </ion-item>
+    <ion-item color="blanco">
+      <ion-label position="floating">Ahorro ($ Cantidad mensual) <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required name="cantidad" type="number" [(ngModel)]="mesArray.cantidad"></ion-input>
+    </ion-item>
+    
+
+    <ion-button  color="secondary" type="submit" [disabled]="forma.invalid">
+      Agregar
+    </ion-button>
+  </form>
+
+
+
+
+
+
+
+      
+      <!--<ion-badge *ngFor="let item of mes" color="tertiary">meses</ion-badge>-->
+    
+    </ion-card-content>
+  </ion-card>
+</ion-content>

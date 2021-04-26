@@ -9,6 +9,9 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class BdService {
 
   private usuarioCollection: AngularFirestoreCollection<UsuarioI>;
@@ -63,6 +66,7 @@ export class BdService {
     return this.usuarioCollection.doc(id).delete();
   }
 
+  
 
   updateMes( id: string,mess:any){
     
