@@ -1,7 +1,8 @@
 {
   "name": "coopeApp",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
