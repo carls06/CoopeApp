@@ -25,7 +25,6 @@ Espacio de almacenamiento minimo 512mb
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
 * **Carlos Gonzalez** -  - [carls06](https://github.com/carls06)
 * **Mauricio Velasquez** -  - [MauricioVelasquez503](https://github.com/MauricioVelasquez503)
