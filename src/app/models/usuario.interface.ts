@@ -1,10 +1,12 @@
 export interface UsuarioI {
-    id?:string;
+    idadmin?:string;
     nombre: string;
     cantidad: number;
     telefono?:string;
     interes?:number;
     ahorro?:number;
+    prestamo?:number;
+
    
   
         

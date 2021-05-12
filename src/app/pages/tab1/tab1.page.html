@@ -21,7 +21,7 @@
             <ion-text color="fontcolor">Disponible</ion-text>
           </ion-card-subtitle>
           <ion-card-title>
-            <ion-text color="fontcolor"> $ 6565</ion-text>
+            <ion-text color="fontcolor"> $ {{disponible}}</ion-text>
           </ion-card-title>
         </ion-card-content>
       </ion-card>
@@ -67,11 +67,15 @@
   <!--style="height:62%"-->
   <ion-card mode="ios" color="blanco">
     <ion-card-header>
-      <ion-searchbar mode="ios" placeholder="Buscar Personas"></ion-searchbar>
+      <ion-searchbar mode="ios" 
+      placeholder="Buscar Personas"
+      animated
+      (ionChange)="buscarUsuario($event)">
+    </ion-searchbar>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item-sliding *ngFor="let item of users">
+        <ion-item-sliding *ngFor="let item of users| filtro:texto">
           <ion-item color="blanco">
             <ion-icon name="person-outline" slot="start"></ion-icon>
             <ion-label>{{item.nombre}}</ion-label>

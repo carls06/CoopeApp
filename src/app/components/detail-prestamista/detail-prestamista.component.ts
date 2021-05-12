@@ -30,6 +30,18 @@ export class DetailPrestamistaComponent implements OnInit {
    );
 
   }
+  atras() {
+    localStorage.removeItem('userp');
+    this.idUser='';
+
+    this.dismiss();
+    
+  }
+  dismiss() {
+    this.modalCtrl.dismiss({
+      'dismissed': true
+    });
+  }
 
   ngOnInit() {}
 

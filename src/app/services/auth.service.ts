@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { AuthI } from '../models/auth.model';
+import { AuthModel} from '../models/auth.model';
 import { map } from 'rxjs/operators';
-import { stringify } from '@angular/compiler/src/util';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,58 +12,90 @@ import { stringify } from '@angular/compiler/src/util';
 export class AuthService {
 
 
-  private userToken='';
-  private refreshToken;
-  private url = environment.url;
+ 
+  private url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
+  private apikey = 'AIzaSyCdrUE4IFfxgaHLZ-btt185F_oIJKoFyi8';
 
-  constructor(private http: HttpClient) { 
+  userToken: string;
+
+  // Crear nuevo usuario
+  // https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=[API_KEY]
+
+
+  // Login
+  // https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=[API_KEY]
+
+
+  constructor( private http: HttpClient ) {
     this.leerToken();
   }
 
-  login(user: AuthI) {
 
-    return this.http.post(
-     
-      `${this.url}/loanservice/v1/auth/login`,user
-    ).pipe(map(resp=>{
-      this.guardarToken(resp['access_token'],resp['refresh_token']);
-      console.log(resp);
-      
-      return resp;
-    }));
-    
-   
-
-  }
-
-  private guardarToken( idToken: string,refreshToken:string ) {
-
-    this.userToken = idToken;
-    this.refreshToken=refreshToken;
-    localStorage.setItem('token', idToken);
-    localStorage.setItem('refresh', refreshToken);
-
-     let hoy = new Date();
-     hoy.setSeconds( 5000 );
-
-     localStorage.setItem('expira', hoy.getTime().toString() );
-
-
-  }
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('refresh');
+    localStorage.removeItem('idAdmin');
     localStorage.removeItem('expira');
+    
+  }
+
+  login( usuario: AuthModel ) {
+
+    const authData = {
+      ...usuario,
+      returnSecureToken: true
+    };
+
+    return this.http.post(
+      `${ this.url }/verifyPassword?key=${ this.apikey }`,
+      authData
+    ).pipe(
+      map( resp => {
+        this.guardarToken( resp['idToken'] );
+        return resp;
+      })
+    );
+
+  }
+
+  nuevoUsuario( usuario: AuthModel ) {
+
+    const authData = {
+      ...usuario,
+      returnSecureToken: true
+    };
+
+    return this.http.post(
+      `${ this.url }/signupNewUser?key=${ this.apikey }`,
+      authData
+    ).pipe(
+      map( resp => {
+        this.guardarToken( resp['idToken'] );
+        return resp;
+      })
+    );
+
+  }
+
+
+  private guardarToken( idToken: string ) {
+
+    this.userToken = idToken;
+    localStorage.setItem('token', idToken);
+
+    let hoy = new Date();
+    hoy.setSeconds( 3600 );
+
+    localStorage.setItem('expira', hoy.getTime().toString() );
+
+
   }
 
   leerToken() {
 
-    if ( localStorage.getItem('token') && localStorage.getItem('refresh')) {
+    if ( localStorage.getItem('token') ) {
       this.userToken = localStorage.getItem('token');
-      this.refreshToken=localStorage.getItem('refresh');
     } else {
       this.userToken = '';
-      this.refreshToken='';
     }
 
     return this.userToken;
@@ -72,13 +105,13 @@ export class AuthService {
 
   estaAutenticado(): boolean {
 
-    if ( this.userToken.length < 20 ) {
+    if ( this.userToken.length < 2 ) {
       return false;
     }
 
-     const expira = Number(localStorage.getItem('expira'));
-     const expiraDate = new Date();
-     expiraDate.setTime(expira);
+    const expira = Number(localStorage.getItem('expira'));
+    const expiraDate = new Date();
+    expiraDate.setTime(expira);
 
     if ( expiraDate > new Date() ) {
       return true;
@@ -88,5 +121,7 @@ export class AuthService {
 
 
   }
+
+
 
 }

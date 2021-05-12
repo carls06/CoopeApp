@@ -16,23 +16,18 @@
     <ion-item >
       <ion-icon slot="start" name="person-outline"></ion-icon>
       <ion-label position="floating">Nombre Completo <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required name="nombre" type="text" [(ngModel)]="nombre"></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-icon slot="start" name="person-outline"></ion-icon>
-      <ion-label position="floating">Ingrese  Usuario <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required name="user" type="text" [(ngModel)]="user"></ion-input>
+      <ion-input required name="nombre" type="text" [(ngModel)]="usuario.nombre"></ion-input>
     </ion-item>
     <ion-item >
       <ion-icon slot="start" name="mail-outline"></ion-icon>
       <ion-label position="floating">Ingrese Correo  <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required name="email" type="text" [(ngModel)]="email"></ion-input>
+      <ion-input required name="email" type="text" [(ngModel)]="usuario.email"></ion-input>
     </ion-item>
     
     <ion-item >
       <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
       <ion-label position="floating">Ingrese Contraseña </ion-label>
-      <ion-input required name="pass" type="password" [(ngModel)]="pass"></ion-input>
+      <ion-input required name="pass" type="password" [(ngModel)]="usuario.password"></ion-input>
     </ion-item>
 
     <ion-button  color="secondary" type="submit" [disabled]="forma.invalid">

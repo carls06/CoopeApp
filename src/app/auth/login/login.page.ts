@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthI } from '../../models/auth.model';
+import { AuthModel } from '../../models/auth.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -12,7 +12,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
   
-  auth: AuthI = new AuthI();
+  auth: AuthModel = new AuthModel();
   
 
   constructor(
@@ -26,18 +26,27 @@ export class LoginPage implements OnInit {
   
   login(f:NgForm){
 
-    if (f.invalid ) { return; }
+    if (  f.invalid ) { return; }
 
     //console.log(f.value);
-    this.authSer_.login(this.auth).subscribe(resp=>{
+    
+    this.authSer_.login(this.auth)
+    .subscribe((resp:any)=>{
       
-      if (resp) {
+      
+        localStorage.setItem('idAdmin',resp.localId);
+        console.log(resp);
+        
         this.router.navigateByUrl('/tab/tabs/tab1');
-      }else{
-        this.presentToast("Usuario o contraseña incorrecta");
-      }
+      
 
-    })
+    }),(err) => {
+
+      console.log(err.error.error.message);
+      
+      
+      this.presentToast(err.error.error.message);
+    };
     
           
   }

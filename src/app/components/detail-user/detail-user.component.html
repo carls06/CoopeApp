@@ -42,7 +42,7 @@
             Dinero Ahorrado
           </ion-text> </ion-card-subtitle>
           <ion-card-title><ion-text color="fontcolor">
-            $ {{ahorro}}
+            $ {{data.ahorro}}
           </ion-text></ion-card-title>
         </ion-card-content>
       </ion-card>
@@ -51,7 +51,7 @@
       <ion-card mode="ios" color="primary" class="center">
         <ion-card-content>
           <ion-card-subtitle><ion-text color="fontcolor">Prestamo</ion-text></ion-card-subtitle>
-          <ion-card-title> <ion-text color="fontcolor">$ 6565</ion-text></ion-card-title>
+          <ion-card-title> <ion-text color="fontcolor">$ {{prestamo}}</ion-text></ion-card-title>
         </ion-card-content>
       </ion-card>
     </ion-col>
@@ -76,7 +76,7 @@
     </ion-card-header>
     
 <ion-card-content color="blanco" >
-
+  <!-- -->
   <form (ngSubmit)="agregarMes( forma )" #forma="ngForm">
     <ion-item color="blanco">
       <ion-label position="floating"><em>Mes</em> <ion-text color="danger">*</ion-text></ion-label>
@@ -92,7 +92,6 @@
       Agregar
     </ion-button>
   </form>
-
 
 
 

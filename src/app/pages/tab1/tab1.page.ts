@@ -9,9 +9,6 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 
 
-
-
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -22,11 +19,15 @@ export class Tab1Page implements OnInit {
   users: UsuarioI[];
   prestamistas=[];
   public prestado:number=0;
+  public disponible:number=0;
+  texto='';
   
 
   constructor(public modalController: ModalController,
     private bdServ_:BdService,private bdPrestServ_:BdPrestamoService,
     private authSer_:AuthService) {
+
+
    
   }
 
@@ -34,11 +35,25 @@ export class Tab1Page implements OnInit {
       
     this.getUser();
     this.getPrestamos();
+    
   }
 
   getUser(){
     this.bdServ_.getUsers().subscribe((users) =>{
-      this.users = users;
+      let id=localStorage.getItem('idAdmin');
+    
+      this.users= users.filter(info => info.idadmin === id);
+      this.disponible=0;
+      localStorage.removeItem('disponible');
+      this.users.forEach(res=>{
+        console.log(res);
+        
+       this.disponible += res.ahorro;
+       localStorage.setItem('disponible', this.disponible.toString());
+      });
+     
+      
+      
     })
 
   }
@@ -48,11 +63,13 @@ export class Tab1Page implements OnInit {
   }
   getPrestamos(){
     this.bdPrestServ_.getPrestamistas().subscribe((prestamistas:any)=>{
-      this.prestamistas=prestamistas;
+      let id= localStorage.getItem('idAdmin');
+      this.prestamistas= prestamistas.filter(info => info.idadmin === id);
       this.prestamistas.map((data:any)=>{
         
         this.prestado=this.prestado+ data.cantidad;
         
+        this.disponible-=this.prestado;
       }
       )
       
@@ -60,6 +77,12 @@ export class Tab1Page implements OnInit {
     })
   }
 
+  buscarUsuario(event){
+    const text =event.target.value;
+
+    this.texto=text;
+    
+  }
  
 
   async presentModalProf() {
@@ -75,6 +98,8 @@ export class Tab1Page implements OnInit {
   }
 
   profileView(id:string){
+    
+    
     localStorage.setItem('user',id);
     this.presentModalProf();
     

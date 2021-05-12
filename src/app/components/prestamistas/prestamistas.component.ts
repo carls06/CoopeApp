@@ -37,12 +37,15 @@ export class PrestamistasComponent implements OnInit {
     toast.present();
   }
 
-  agregarPrestamo(f:NgForm){
-    if (this.bdPrestServ_.addPrestamo(f.value)) {
-      this.presentToast('Prestamo agregado Correctamente');
-      f.reset();
+  agregarPrestamo(f: NgForm) {
+    if (localStorage.getItem('disponible')<f.value.cantidad) {
+      this.presentToast('Saldo disponible es menor a la cantidad solicitada');
+    }else{
+      if (this.bdPrestServ_.addPrestamo(f.value)) {
+        this.presentToast('Prestamo agregado Correctamente');
+        f.reset();
+      }
     }
-
   }
 
 }

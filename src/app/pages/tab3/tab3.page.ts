@@ -16,7 +16,9 @@ export class Tab3Page {
 
   constructor(public modalController: ModalController, private bdPrestServ_:BdPrestamoService,) {
     this.bdPrestServ_.getPrestamistas().subscribe(data=>{
-      this.prestamistas=data;
+      let id= localStorage.getItem('idAdmin');
+      this.prestamistas= data.filter(info => info.idadmin === id);
+      
       console.log(this.prestamistas);
       
     })

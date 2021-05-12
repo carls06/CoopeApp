@@ -12,7 +12,15 @@
     
     <ion-card-content>
       <ion-list>
+        <div *ngIf="prestamistas==''">
+            
+            <img src="../../../assets/img/nodata.svg" />
+
+          </div>
         <ion-item-sliding *ngFor="let item of prestamistas">
+          
+
+          
           <ion-item color="blanco">
             <ion-icon name="person-outline" slot="start"></ion-icon>
             <ion-label>{{item.nombre}}</ion-label>

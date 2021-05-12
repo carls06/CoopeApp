@@ -33,8 +33,11 @@ export class BdPrestamoService {
   }
 
   addPrestamo(user: UsuarioI) {
-    
-    return this.prestamosCollection.add(user);
+    user.idadmin=localStorage.getItem('idAdmin')
+    let usertemp={
+    ...user,
+    }
+    return this.prestamosCollection.add(usertemp);
   }
 
   getPrestamo(id: string) {

@@ -36,25 +36,11 @@ export class BdService {
   }
 
   addUser(user: UsuarioI) {
+    user.idadmin=localStorage.getItem('idAdmin');
+    user.ahorro=0;
+    user.prestamo=0;
     let usertemp={
-    ...user,
-    mes:[]
-    /*mes:[ 
-    {isChecked: false,val:'Enero'},
-    {isChecked: false,val:'Febrero'},
-    {isChecked: false,val:'Marzo'},
-    {isChecked: false,val:'Abril'},
-    {isChecked: false,val:'Mayo'},
-    {isChecked: false,val:'Junio'},
-    {isChecked: false,val:'Julio'},
-    {isChecked: false,val:'Agosto'},
-    {isChecked: false,val:'Septiembre'},
-    {isChecked: false,val:'Octubre'},
-    {isChecked: false,val:'Noviembre'},
-    {isChecked: false,val:'Diciembre'},
-    ]*/
-    
-
+    ...user
     }
     return this.usuarioCollection.add(usertemp);
   }
@@ -66,6 +52,13 @@ export class BdService {
     return this.usuarioCollection.doc(id).delete();
   }
 
+  updateAhorro(id:string,val:any){
+
+    this.usuarioCollection.doc(id).update({
+      "ahorro": val
+  });
+
+  }
   
 
   updateMes( id: string,mess:any){
