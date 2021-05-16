@@ -57,8 +57,6 @@ export class Tab1Page implements OnInit {
        localStorage.setItem('disponible', this.disponible.toString());
       });
      
-      
-      
     })
 
   }

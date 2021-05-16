@@ -24,7 +24,6 @@ export class Tab3Page {
     })
   }
 
-  
 
   async presentModalProf() {
     const modal = await this.modalController.create({
