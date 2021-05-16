@@ -34,21 +34,26 @@ export class Tab1Page implements OnInit {
   ngOnInit(){
       
     this.getUser();
+    
     this.getPrestamos();
     
   }
 
   getUser(){
+    this.disponible=0;
     this.bdServ_.getUsers().subscribe((users) =>{
       let id=localStorage.getItem('idAdmin');
     
       this.users= users.filter(info => info.idadmin === id);
-      this.disponible=0;
+      
       localStorage.removeItem('disponible');
       this.users.forEach(res=>{
-        console.log(res);
+       
         
        this.disponible += res.ahorro;
+       this.prestado+= res.prestamo;
+       this.disponible-=this.prestado;
+       
        localStorage.setItem('disponible', this.disponible.toString());
       });
      
@@ -69,7 +74,7 @@ export class Tab1Page implements OnInit {
         
         this.prestado=this.prestado+ data.cantidad;
         
-        this.disponible-=this.prestado;
+        this.disponible -=this.prestado;
       }
       )
       
@@ -95,6 +100,7 @@ export class Tab1Page implements OnInit {
   
   delete(id:string){
     this.bdServ_.removeuser(id);
+    this.getUser();
   }
 
   profileView(id:string){

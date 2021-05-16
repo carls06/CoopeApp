@@ -35,6 +35,7 @@ export class Tab3Page {
 
   delete(id:string){
     this.bdPrestServ_.removePrestamo(id);
+    
   }
 
   profilePrestamista(id:string){

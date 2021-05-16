@@ -59,33 +59,20 @@ export class BdService {
   });
 
   }
-  
+  udpateDeuda(id:string,val:any){
 
-  updateMes( id: string,mess:any){
-    
+    this.usuarioCollection.doc(id).update({
+      "prestamo": val
+  });
 
-   /* return this.usuarioCollection.doc(id).update(`{
+  }
+  addDeuda(id:string,val:any){
 
-      mes:[{  isChecked: ${check}, val:${mess} }
-
-    ]}`)*/
-
-    /*return this.usuarioCollection.doc(id).update(
-      {
-        mes:[{val:`${mess}`}]
-      }
-    );
-
-    this.usuarioCollection.doc(id).set( 
-      {  mes:[{val:`${mess}`,cant:20}]
-    },{ merge: true }
-    )*/
-    this.usuarioCollection.doc(id).collection('mes')
-    .add({val:`${mess}`,cant:20})
-  
-    
-  
+    this.usuarioCollection.doc(id).update({
+      "prestamo": val
+  });
 }
+ 
 
 
 

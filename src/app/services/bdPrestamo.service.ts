@@ -46,7 +46,12 @@ export class BdPrestamoService {
   removePrestamo(id: string){
     return this.prestamosCollection.doc(id).delete();
   }
+  updateAhorro(id:string,val:any){
 
+    this.prestamosCollection.doc(id).update({
+      "cantidad": val
+  });
+  }
 
   updateMes( id: string,mess:any){
     

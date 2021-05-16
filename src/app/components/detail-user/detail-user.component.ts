@@ -21,7 +21,9 @@ export class DetailUserComponent implements OnInit {
    idUser: string;
    public data:any;
    public ahorro:number=0;
-   public prestamo:number=0;
+   prestamo={
+      canidad:''
+    };
 
    mesArray={
      name:'',
@@ -78,6 +80,31 @@ export class DetailUserComponent implements OnInit {
       
     }
   }
+  AddDeuda(forma:NgForm){
+
+    if (localStorage.getItem('disponible')<forma.value.cantidad) {
+      this.presentToast('Saldo disponible es menor a la cantidad solicitada');
+    }else if (forma.valid){
+      let dinero=0;
+       dinero = this.data.prestamo + forma.value.cantidad;
+      this.bdServ_.addDeuda(this.idUser,dinero);
+      this.presentToast('Prestamo Agregado Correctamente');
+     
+      forma.reset();
+      
+    }
+  }
+  AgregarADeuda(forma:NgForm){
+
+    if (forma.valid) {
+      let dinero = this.data.prestamo - forma.value.cantidad;
+      this.bdServ_.udpateDeuda(this.idUser,dinero);
+      this.presentToast('Mensualidad agregada Correctamente');
+      this.pdfDownload();
+      forma.reset();
+      
+    }
+  }
 
   pdfDownload(){
     console.log('si entra');
@@ -114,7 +141,7 @@ export class DetailUserComponent implements OnInit {
           table: {
             body: [
               ['Mes', 'Cantidad ', 'Total Adeudado'],
-              [this.deudaArray.name, this.deudaArray.cantidad, this.prestamo]
+              [this.deudaArray.name, this.deudaArray.cantidad, this.data.prestamo+(-this.deudaArray.cantidad)]
             ]
           }
         }
